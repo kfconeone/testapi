@@ -25,10 +25,10 @@ function getDb() {
   if (db != null) return db;
   console.log("Initializing app");
   console.log(serviceAccount);
-  // admin.initializeApp({
-  //   credential: admin.credential.cert(serviceAccount),
-  // });
-  // return admin.firestore();
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+  });
+  return admin.firestore();
 }
 
 export default async function handler(
