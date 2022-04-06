@@ -37,6 +37,8 @@ export default async function handler(
 ) {
   try {
     console.log(req.body);
+    console.log(req.body.id);
+    console.log(req.body.line_items);
     if (req.body.line_items.length > 0) {
       let tempLineItems = req.body.line_items.map((item: any) => {
         return {
