@@ -9,9 +9,14 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  console.log("this is the request body");
-  console.log(req.body);
-  console.log(process.env.SAKEY);
+  try {
+    console.log("this is the request body");
+    console.log(req.body);
+    console.log(process.env);
+    console.log(process.env.SAKEY);
+  } catch (error) {
+    console.log("error: ", error);
+  }
 
   res.status(200);
 }
