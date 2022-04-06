@@ -36,7 +36,7 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   try {
-    let db = getDb();
+    db = getDb();
 
     console.log("this is the request body");
 
