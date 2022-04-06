@@ -12,11 +12,10 @@ export default function handler(
   try {
     console.log("this is the request body");
     console.log(req.body);
-    console.log(process.env);
-    console.log(process.env.SAKEY);
+    // console.log(process.env);
   } catch (error) {
     console.log("error: ", error);
   }
 
-  res.status(200);
+  res.status(200).json({ name: "Hello World" });
 }
