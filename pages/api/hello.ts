@@ -11,6 +11,7 @@ export default function handler(
 ) {
   console.log("this is the request body");
   console.log(req.body);
+  console.log(process.env.SAKEY);
 
-  res.status(200).json({ name: "John Doe222" });
+  res.status(200);
 }
