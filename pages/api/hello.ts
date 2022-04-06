@@ -36,6 +36,7 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   try {
+    console.log(req.body);
     if (req.body.line_items.length > 0) {
       let tempLineItems = req.body.line_items.map((item: any) => {
         return {
