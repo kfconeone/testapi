@@ -50,7 +50,8 @@ export default async function handler(
       });
 
       db = getDb();
-      db.collection("shopify_hooks").doc(req.body.id).set({
+      db.collection("shopify_hooks").add({
+        id: req.body.id,
         line_items: tempLineItems,
         updated_at: req.body.updated_at,
         created_at: req.body.created_at,
