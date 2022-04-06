@@ -24,7 +24,7 @@ var db: any = null;
 function getDb() {
   if (db != null) return db;
   console.log("Initializing app");
-  console.log(serviceAccount);
+
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
   });
@@ -40,9 +40,9 @@ export default async function handler(
 
     console.log("this is the request body");
 
-    // let doc = await db.collection("Users").doc("User001").get();
-    // console.log(doc.id);
-    // console.log(doc.data());
+    let doc = await db.collection("Users").doc("User001").get();
+    console.log(doc.id);
+    console.log(doc.data());
   } catch (error) {
     console.log("error: ", error);
   }
