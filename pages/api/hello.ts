@@ -37,7 +37,7 @@ export default async function handler(
 ) {
   try {
     db = getDb();
-    console.log(req);
+    console.log(req.body);
     db.collection("shopify_hooks")
       .doc("User001")
       .set({
