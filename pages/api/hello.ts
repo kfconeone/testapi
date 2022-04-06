@@ -37,12 +37,13 @@ export default async function handler(
 ) {
   try {
     db = getDb();
-
-    console.log("this is the request body");
-
-    let doc = await db.collection("Users").doc("User001").get();
-    console.log(doc.id);
-    console.log(doc.data());
+    console.log(req);
+    db.collection("shopify_hooks")
+      .doc("User001")
+      .set({
+        isHide: true,
+        registeredDate: admin.firestore.Timestamp.fromDate(new Date()),
+      });
   } catch (error) {
     console.log("error: ", error);
   }
