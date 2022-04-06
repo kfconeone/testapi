@@ -36,14 +36,23 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   try {
-    db = getDb();
-    console.log(req.body);
-    db.collection("shopify_hooks")
-      .doc("User001")
-      .set({
-        isHide: true,
-        registeredDate: admin.firestore.Timestamp.fromDate(new Date()),
+    if (req.body.line_items.length > 0) {
+      let tempLineItems = req.body.line_items.map((item: any) => {
+        return {
+          quantity: item.quantity,
+          price: item.price,
+          sku: item.sku,
+          title: item.title,
+        };
       });
+
+      db = getDb();
+      db.collection("shopify_hooks").doc(req.body.id).set({
+        line_items: tempLineItems,
+        updated_at: req.body.updated_at,
+        created_at: req.body.created_at,
+      });
+    }
   } catch (error) {
     console.log("error: ", error);
   }
