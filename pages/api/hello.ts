@@ -37,8 +37,6 @@ export default async function handler(
 ) {
   try {
     console.log(req.body);
-    console.log(req.body.id);
-    console.log(req.body.line_items);
     if (req.body.line_items.length > 0) {
       let tempLineItems = req.body.line_items.map((item: any) => {
         return {
@@ -48,10 +46,10 @@ export default async function handler(
           title: item.title,
         };
       });
+      console.log(tempLineItems);
 
       db = getDb();
-      db.collection("shopify_hooks").add({
-        id: req.body.id,
+      await db.collection(req.body.id).set({
         line_items: tempLineItems,
         updated_at: req.body.updated_at,
         created_at: req.body.created_at,
