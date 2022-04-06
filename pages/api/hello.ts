@@ -49,7 +49,7 @@ export default async function handler(
       console.log(tempLineItems);
 
       db = getDb();
-      await db.collection(req.body.id).set({
+      await db.collection("shopify_hooks").doc(req.body.id).set({
         line_items: tempLineItems,
         updated_at: req.body.updated_at,
         created_at: req.body.created_at,
