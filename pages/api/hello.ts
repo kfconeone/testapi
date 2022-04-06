@@ -2,7 +2,19 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 var admin = require("firebase-admin");
-const serviceAccount = JSON.parse(process.env.SAKEY as string);
+
+const serviceAccount = {
+  type: process.env.type,
+  project_id: process.env.project_id,
+  private_key_id: process.env.private_key_id,
+  private_key: process.env.private_key,
+  client_email: process.env.client_email,
+  client_id: process.env.client_id,
+  auth_uri: process.env.auth_uri,
+  token_uri: process.env.token_uri,
+  auth_provider_x509_cert_url: process.env.auth_provider_x509_cert_url,
+  client_x509_cert_url: process.env.client_x509_cert_url,
+};
 
 type Data = {
   name: string;
@@ -11,10 +23,12 @@ type Data = {
 var db: any = null;
 function getDb() {
   if (db != null) return db;
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-  });
-  return admin.firestore();
+  console.log("Initializing app");
+  console.log(serviceAccount);
+  // admin.initializeApp({
+  //   credential: admin.credential.cert(serviceAccount),
+  // });
+  // return admin.firestore();
 }
 
 export default async function handler(
@@ -26,9 +40,9 @@ export default async function handler(
 
     console.log("this is the request body");
 
-    let doc = await db.collection("Users").doc("User001").get();
-    console.log(doc.id);
-    console.log(doc.data());
+    // let doc = await db.collection("Users").doc("User001").get();
+    // console.log(doc.id);
+    // console.log(doc.data());
   } catch (error) {
     console.log("error: ", error);
   }
